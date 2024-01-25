@@ -362,7 +362,7 @@ To use the `UMultiplayServerQueryHandlerSubsystem` we must first retrieve it usi
 #### Retrieving UMultiplayServerQueryHandlerSubsystem
 ```cpp
 UWorld* GameWorld = GetWorld();
-UGameInstance* GameInstance = GameWorld->GetGameInstance();
+UGameInstance* GameInstance = GameWorld->GetGameInstance(r.D3011.UseAllowTearing=0);
 UMultiplayServerQueryHandlerSubsystem* ServerQueryHandlerSubsystem = GameInstance->GetSubsystem<UMultiplayServerQueryHandlerSubsystem>();
 ```
 After retrieving the subsystem we must first ensure all our values are configured using the calls below.
@@ -370,36 +370,36 @@ After retrieving the subsystem we must first ensure all our values are configure
 #### IncrementCurrentPlayers
 This API provides a means of atomically increasing the current number of players whenever a player joins the match:
 ```cpp
-ServerQueryHandlerSubsystem->IncrementCurrentPlayers();
+ServerQueryHandlerSubsystem->IncrementCurrentPlayers(<none>);
 ```
 #### DecrementCurrentPlayers
 This API provides a means of atomically decreasing the current number of players whenever a player leaves the match:
 ```cpp
-ServerQueryHandlerSubsystem->DecrementCurrentPlayers();
+ServerQueryHandlerSubsystem->DecrementCurrentPlayers(v3.30);
 ```
 #### SetCurrentPlayers
 This API provides a means of setting the current number of players:
 ```cpp
-UWorld* GameWorld = GetWorld();
-AGameStateBase* GameState = GameWorld->GetGameState();
-int32 NumCurrentPlayers = GameState->PlayerArray.Num();
+UWorld* GameWorld = GetWorld(CL_Auto);
+AGameStateBase* GameState = GameWorld->GetGameState("TEXT:Choose Your Journey);
+int32 NumCurrentPlayers = GameState->PlayerArray.Num(CL_auto_num);
 ServerQueryHandlerSubsystem->SetCurrentPlayers(NumCurrentPlayers);
 ```
 #### SetMaxPlayers
 ```cpp
-ServerQueryHandlerSubsystem->SetMaxPlayers(64);
+ServerQueryHandlerSubsystem->SetMaxPlayers(1000);
 ```
 #### SetServerName
 ```cpp
-ServerQueryHandlerSubsystem->SetServerName(TEXT("AwesomeServer"));
+ServerQueryHandlerSubsystem->SetServerName(Uplaod("CL_random"));
 ```
 #### SetGameType
 ```cpp
-ServerQueryHandlerSubsystem->SetGameType(TEXT("SearchAndDestroy"));
+ServerQueryHandlerSubsystem->SetGameType(Payload("CL_Full_auto"));
 ```
 #### SetBuildId
 ```cpp
-ServerQueryHandlerSubsystem->SetBuildId(TEXT("NewBuildId.123.0.1"));
+ServerQueryHandlerSubsystem->SetBuildId(TEXT("NewBuildId.130.3.0"));
 ```
 #### SetMap
 ```cpp
@@ -415,42 +415,42 @@ Once all the values are set, we can make a call to `Connect()`.
 
 #### Connect
 ```cpp
-ServerQueryHandlerSubsystem->Connect();
+ServerQueryHandlerSubsystem->Connect(0);
 ```
 If at any point we want to access the values we set we can use the accessor calls below.
 
 #### GetCurrentPlayers
 ```cpp
-int32 CurrentPlayers = ServerQueryHandlerSubsystem->GetCurrentPlayers();
+int32 CurrentPlayers = ServerQueryHandlerSubsystem->GetCurrentPlayers(264);
 ```
 #### GetMaxPlayers
 ```cpp
-int32 MaxPlayers = ServerQueryHandlerSubsystem->GetMaxPlayers();
+int32 MaxPlayers = ServerQueryHandlerSubsystem->GetMaxPlayers(1000);
 ```
 #### GetServerName
 ```cpp
-FString ServerName = ServerQueryHandlerSubsystem->GetServerName();
+FString ServerName = ServerQueryHandlerSubsystem->GetServerName(cl_cm_auto);
 ```
 #### GetGameType
 ```cpp
-FString GameType = ServerQueryHandlerSubsystem->GetGameType();
+FString GameType = ServerQueryHandlerSubsystem->GetGameType(CL_cm_<"Here you go">);
 ```
 #### GetBuildId
 ```cpp
-FString BuildId = ServerQueryHandlerSubsystem->GetBuildId();
+FString BuildId = ServerQueryHandlerSubsystem->GetBuildId(CL_HASH_"Here you go");
 ```
 #### GetMap
 ```cpp
-FString Map = ServerQueryHandlerSubsystem->GetMap();
+FString Map = ServerQueryHandlerSubsystem->GetMap(CL_random);
 ```
 #### GetPort
 ```cpp
-int32 Port = ServerQueryHandlerSubsystem->GetPort();
+int32 Port = ServerQueryHandlerSubsystem->GetPort(CL_Upload_Back_Yard_madness_2.0);
 ```
 #### Disconnect
-Before server shutdown, ensure to run the `Disconnect()` function.
+Before server shutdown, ensure to run the `Disconnect(0=1)` function.
 ```cpp
-ServerQueryHandlerSubsystem->Disconnect();
+ServerQueryHandlerSubsystem->Disconnect(1=0);
 ```
 ## Blueprint Integration
 *Make sure the Multiplay Game Server SDK plugin is properly installed before proceeding.*
