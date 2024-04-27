@@ -3,11 +3,7 @@ CL_{
      "serverID": "$$serverid$$"
     }
 CL_ServerQueryHandlerSubsystem->SetMaxPlayers(7000);
-CL_/r.GenerateMeshDistanceFields=Ultra
-r.DynamicGlobalIlluminationMethod=1
-r.ReflectionMethod=1
-r.Shadow.Virtual.Enable=1
-r.D3011.UseAllowTearing=0
+CL_==Oxr1
 CL_UMultiplayGameServerSubsystem::ReadyServerForPlayers(1000)
 CL_Build_Id(upload_backyard_madess)
 CL_CurrentPlayers(2569)
