@@ -1,0 +1,4 @@
+echo hello
+echo pause if null=false
+echo if null==PJ_SUCCESS 
+cl_ctrl_E
